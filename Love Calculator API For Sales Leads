@@ -4,19 +4,19 @@ date : 12/10/2023
 Purpose : Use a api called love calculator, ask user to input their partner and their name and then do cross-selling by showing result*/
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Love Calculautor Using API</title>
+    <title> Love Meter to Calculate Love Percentage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         
         body {
             height: 100%;
-          
-            background: linear-gradient(to bottom, #FF69B4, #FF1493);
+            background: pink;
             height: 100vh;
             margin: 0;
             color: white;
@@ -47,9 +47,7 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
         border-color: #FF69B4; 
         
     }
-    #parentBlock {
-        max-width:300px;
-    }
+
    
     img{
         max-height: 200px;
@@ -60,7 +58,7 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
 <body>
 <section>
     <header>
-        <h1 style = "text-align: center;   margin-top: 300px;">This is a Love Calculator</h1>
+        <h1 style = "text-align: center;   margin-top: 100px; "> Love Meter to Calculate <br/> You and Your Partner Compatibility</h1>
 
     </header>
 </section>
@@ -68,30 +66,30 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
     <form id="inputForm">
         
         
-        <div class="row mt-5">
+        <div class="row mt-2">
             <div class="col-sm-12 col-lg-6 ">
                 <div class="form-group">
-                    <label for="loverOne text-body-secondary">Lover's name</label>
+                    <label for="loverOne text-body-secondary">Your Name</label>
                     <input type="text" class="form-control" id="loverOne">
                 </div>
             </div>
             <div class="col-sm-12 col-lg-6">
                 <div class="form-group">
-                    <label for="loverTwo text-body-secondary">Another Lover's name</label>
+                    <label for="loverTwo text-body-secondary">Your Lover's Name</label>
                     <input type="text" class="form-control" id="loverTwo">
                 </div>
             </div>
         </div>
         
         
-        <button type="submit"  class="btn btn-primary mt-5">Find it out</button>
+        <button type="submit"  class="btn btn-primary my-2">Find it out</button>
         
       
        
-        <div id="parentBlock mt-5">
-            <div id="percentage" class="mt-2"></div>
+        <div id="parentBlock">
+            <div id="percentage" class="mt-1" style="color:black"></div>
             <div id="photo"></div>
-            <div id="result" class="mt-2"></div>
+            <div id="result" class="mt-1"></div>
         </div>
        
         
@@ -107,9 +105,9 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 
-    const replies = [{ percentage : 40, photo : "https://media.tenor.com/W8M6ilWudzUAAAAd/john-travolta-wheres-the-soap.gif", message : "Turn the tides of fate this Christmas. Even low compatibility can find sparks with the right gift. Explore the selection of soap and ignite a new flame. 🎁🔥" },
-                    { percentage : 80, photo : "https://media.tenor.com/CFzrr_vsdp0AAAAd/give-chocolate.gif", message :  "Embrace the magic of Christmas together. For those with a moderate spark, our handpicked lover gifts will kindle a brighter flame. A chocolate set that make this holiday season unforgettable. 🎁💖" },
-                    { percentage : 100, photo : "https://media.tenor.com/10jBn-ETuTMAAAAC/harry-styles-perfect.gif", message : "Celebrate the holiday season with a love that knows no bounds. For high compatibility lovers, our bedding sets are designed to deepen your connection. " },
+    const replies = [{ percentage : 40, photo : "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", message : "Turn the tides of fate this Christmas. Even low compatibility can find sparks with the right gift. Explore the selection of soap and ignite a new flame. 🎁🔥" },
+                    { percentage : 80, photo : "https://images.unsplash.com/photo-1525550598465-c6c7bf72cbd9?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", message :  "Embrace the magic of Christmas together. For those with a moderate spark, our handpicked lover gifts will kindle a brighter flame. A chocolate set that make this holiday season unforgettable. 🎁💖" },
+                    { percentage : 100, photo : "https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?auto=format&fit=crop&q=80&w=2874&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", message : "Celebrate the holiday season with a love that knows no bounds. For high compatibility lovers, our bedding sets are designed to deepen your connection. " },
 ]
     document.getElementById('inputForm').addEventListener('submit', function(event) {
         
@@ -143,6 +141,7 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
       
         const item = replies.find(item => res.percentage < item.percentage);
 
+
         if (item) {
             print( res.percentage, item.message, item.photo);
             
@@ -152,14 +151,24 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
     function print(percentage, message, photo){
         document.getElementById("percentage").innerText = `Match Percentage ${ percentage} %`;   
        
-        /*Need further Improvement : remove the image if the class list imgClass exist the first time*/
+       
+        
+       
+        
         let parentElement = document.getElementById('photo');
-        let imgElement = document.createElement('img');
-        imgElement.classList.add('imgClass');
-        imgElement.classList.add('my-5');
-        imgElement.src = photo; 
-        parentElement.appendChild(imgElement);
 
+        if (parentElement.childElementCount>0){
+            imgElement = document.getElementsByClassName('imgClass')[0]; 
+            imgElement.src = photo; 
+            
+        }
+        else {
+            let imgElement = document.createElement('img');
+            imgElement.classList.add('imgClass');
+            imgElement.classList.add('my-2');
+            imgElement.src = photo; 
+            parentElement.appendChild(imgElement);
+        }
         document.getElementById("result").innerText = `Match Percentage ${message} %`; 
     }
             
@@ -170,6 +179,9 @@ Purpose : Use a api called love calculator, ask user to input their partner and 
 
 </body>
 </html>
+
+
+
 
 
 
